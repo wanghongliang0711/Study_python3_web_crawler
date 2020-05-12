@@ -10,14 +10,14 @@ def study_test2(n):
         yield i*i
         print("====结束test2===", i*i)
 
-# for i in study_test2(3):
-#     print(f"*********{i}*********")
-#     print("wangwangwang")
+for i in study_test2(3):
+    print(f"*********{i}*********")
+    print("wangwangwang")
 
-f = study_test2(3)
-print(f.__next__())
-print(f.__next__())
-print(f.__next__())
+# f = study_test2(3)
+# print(f.__next__())
+# print(f.__next__())
+# print(f.__next__())
 # print(f.__next__())
 
 """
