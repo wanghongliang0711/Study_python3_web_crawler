@@ -90,7 +90,7 @@ print(result)
 print(result1)
 print(result2)
 print(result3)
-print(result4)
+print("result4 ", result4)
 
 
 """  节点轴选择  """
@@ -113,7 +113,17 @@ print(result6)
 
 
 
+# from lxml.html import etree
+from lxml.html import fromstring, HtmlElement
 
+test_html = '''<p><span>hello</span><span>world</span></p>'''
+test_element = fromstring(test_html)
+# etree.strip_tags(test_element,'span') # 清除span标签
+# print(etree.tostring(test_element))
+
+
+etree.strip_elements(test_element,'span') # 清除span标签
+print(etree.tostring(test_element))
 
 
 

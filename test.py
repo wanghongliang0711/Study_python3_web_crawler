@@ -32,3 +32,8 @@ picture_url = "https://i3.mmzztt.com/2014/07/20140711w802.jpg"
 
 picture_name = picture_url.split("/")[-1]
 print(picture_name)
+
+
+for i in range(1, 1000, 10):
+    print(i)
+
