@@ -15,16 +15,17 @@ from lxml.html import fromstring
 class Crawler(object):
     def get_proxies(self):
         proxies = []
-        for i1 in self.crawl_daili66():
-            print("成功获取代理： ", i1)
-            proxies.append(i1)
-        for i2 in self.crawl_proxyGoubanjia():
-            print("成功获取代理： ", i2)
-            proxies.append(i2)
+        # for i1 in self.crawl_daili66():
+        #     print("成功获取代理： ", i1)
+        #     proxies.append(i1)
+        # for i2 in self.crawl_proxyGoubanjia():
+        #     print("成功获取代理： ", i2)
+        #     proxies.append(i2)
         for i3 in self.crawl_kuaidaili():
             print("成功获取代理： ", i3)
-            proxies.append(i3)
-        return proxies
+            yield i3
+        #     proxies.append(i3)
+        # return proxies
 
 
     def crawl_daili66(self, page_count=2000):
