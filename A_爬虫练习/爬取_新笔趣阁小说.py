@@ -21,20 +21,21 @@ file_name = "夜的命名术" + ".txt"
 
 def get_book_data(start_page, f):
     res = s.get(start_page, headers=header)
+    res.encoding = res.apparent_encoding
     html = etree.HTML(res.text, etree.HTMLParser())
-    title = html.xpath('//div[@class="nr_title"]//h3//text()')
+    title = html.xpath('//div[@id="wrapper"]//div[@class="bookname"]//h1//text()')
     title_str = str(title[0]).replace(" ", "").replace("\n", "") + "\n"
     print(title_str)
     f.write(title_str)
-    article_content = html.xpath('//div[@id="articlecontent"]//p[@class="content_detail"]//text()')
+    article_content = html.xpath('//div[@id="wrapper"]//div[@id="content"]//text()')
     for content_detail in article_content:
         # print(content_detail)
-        content_detail_str = str(content_detail).replace(" ", "").replace("\ue1bc","").replace("\xa0","").replace("\n","") + "\n"
-        f.write(content_detail_str)
+        content_detail_str = str(content_detail).replace(" ", "").replace("\ue1bc","").replace("\xa0","").replace("\n","").replace("\r","") + "\n"
+        if content_detail_str != "\n":
+            f.write(content_detail_str)
         # print(content_detail_str)
-
-    next_content = html.xpath('//div[@class="nr_page"]/a/@href')[-1]
-    next_content_url = "http://www.soduso.cc"+next_content
+    next_content = html.xpath('//div[@class="bottem1"]/a/@href')[-2]
+    next_content_url = "https://www.xbiquge.la"+next_content
     if next_content_url.endswith(".html"):
         print(next_content_url)
         time.sleep(1)  # 怕被拒绝访问，加等待时间
@@ -47,11 +48,9 @@ def get_book_data(start_page, f):
 def main():
     f = None
     try:
-        # http://www.soduso.cc/novel/67837/read_35923837.html
         # 从第几章开始
-        # start_page = "http://www.soduso.cc/novel/67837/read_35923837.html"  # 朕
-        # http://www.soduso.cc/novel/62408/read_37994121.html # 夜的命名术
-        start_page = "http://www.soduso.cc/novel/62408/read_37994121.html"
+        # https://www.xbiquge.la/25/25858/36605399.html # 夜的命名术
+        start_page = "https://www.xbiquge.la/25/25858/36605399.html"
         f = open(file_name, 'w', encoding='utf-8')
         get_book_data(start_page, f)
     except Exception as e:
