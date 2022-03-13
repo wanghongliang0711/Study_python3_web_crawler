@@ -16,8 +16,6 @@ header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36
 s = requests.Session()
 s.keep_alive = False
 
-file_name = "夜的命名术" + ".txt"
-
 
 def get_book_data(start_page, f):
     res = s.get(start_page, headers=header)
@@ -45,12 +43,16 @@ def get_book_data(start_page, f):
         print("结束...")
 
 
+file_name = "星门" + ".txt"
+
+
 def main():
     f = None
     try:
         # 从第几章开始
         # https://www.xbiquge.la/25/25858/36605399.html # 夜的命名术
-        start_page = "https://www.xbiquge.la/25/25858/36605399.html"
+        # https://www.xbiquge.la/84/84419/35682318.html # 星门
+        start_page = "https://www.xbiquge.la/84/84419/35682318.html"
         f = open(file_name, 'w', encoding='utf-8')
         get_book_data(start_page, f)
     except Exception as e:
