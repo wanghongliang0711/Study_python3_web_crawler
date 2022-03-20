@@ -4,9 +4,12 @@
 @time: 2021/11/25 14:01 
 """
 import time
-
 import requests
 from lxml import html
+import sys  # 导入sys模块
+
+
+sys.setrecursionlimit(30000)  # 将默认的递归深度修改为30000
 
 
 etree = html.etree
@@ -43,7 +46,7 @@ def get_book_data(start_page, f):
         print("结束...")
 
 
-file_name = "星门" + ".txt"
+file_name = "永生" + ".txt"
 
 
 def main():
@@ -52,7 +55,7 @@ def main():
         # 从第几章开始
         # https://www.xbiquge.la/25/25858/36605399.html # 夜的命名术
         # https://www.xbiquge.la/84/84419/35682318.html # 星门
-        start_page = "https://www.xbiquge.la/84/84419/35682318.html"
+        start_page = "https://www.xbiquge.la/13/13734/5499412.html"
         f = open(file_name, 'w', encoding='utf-8')
         get_book_data(start_page, f)
     except Exception as e:
